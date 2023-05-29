@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Entity", "Order.Entity\Order.Entity.csproj", "{926C04C3-CE72-4A80-83AC-B74912426BAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.UI", "Order.UI\Order.UI.csproj", "{3FD8690E-68BA-48C2-B852-7FEAA4890E66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{926C04C3-CE72-4A80-83AC-B74912426BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{926C04C3-CE72-4A80-83AC-B74912426BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{926C04C3-CE72-4A80-83AC-B74912426BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{926C04C3-CE72-4A80-83AC-B74912426BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FD8690E-68BA-48C2-B852-7FEAA4890E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD8690E-68BA-48C2-B852-7FEAA4890E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD8690E-68BA-48C2-B852-7FEAA4890E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD8690E-68BA-48C2-B852-7FEAA4890E66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {801C4AD0-F16F-4876-A622-42ADA4AEDEA2}
+	EndGlobalSection
+EndGlobal
