@@ -49,6 +49,7 @@ public class RoleController : Controller
             };
 
             _unitOfWork.Roles.Add(role);
+            _unitOfWork.Commit();
 
             return RedirectToAction("Index");
         }

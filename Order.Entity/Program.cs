@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Order.Entity.Entities;
-using Order.Entity.NewLayer.interfaces;
-using Order.Entity.Repositories;
-using Order.Entity.UnitOfWork;
 
 
 namespace Order.Entity

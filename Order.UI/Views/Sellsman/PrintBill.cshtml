@@ -1,6 +1,7 @@
-﻿
-
-<h2>Bill Details</h2>
+﻿@model SellsmanViewModel
+@*//@model IEnumerable<SelectListItem>
+*@
+@*<h2>Bill Details</h2>
 
 <h3>Order Items</h3>
 
@@ -27,6 +28,30 @@
 </table>
 
 <h3>Total Price</h3>
-<p>Total Price: @ViewBag.TotalPrice</p>
+<p>Total Price: @ViewBag.TotalPrice</p>*@
 
-<a href="/Sellsman/Index">Back to Sellsman</a>
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Your existing HTML content -->
+
+<div class="mt-3" style="float:right">
+    <form asp-controller="Sellsman" asp-action="PrintBill" method="post">
+        <input type="hidden" asp-for="User" />
+        @foreach (var item in Model.Items)
+        {
+            <input type="hidden" asp-for="@item.Order" value="@item.Order" />
+            <input type="hidden" asp-for="@item.UnitPrice" value="@item.UnitPrice" />
+            <input type="hidden" asp-for="@item.Quantity" value="@item.Quantity" />
+            <input type="hidden" asp-for="@item.Total" value="@item.Total" />
+        }
+        <input type="hidden" asp-for="TotalAmount" />
+
+        <button type="submit" class="btn btn-primary">Print Bill</button>
+    </form>
+</div>
+
+
+@*<a href="/Sellsman/Index">Back to Sellsman</a>
+*@

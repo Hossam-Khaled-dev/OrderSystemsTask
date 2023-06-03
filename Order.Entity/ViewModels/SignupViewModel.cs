@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Order.UI.ViewModels
+namespace Order.Entity.ViewModels
 {
     public class SignupViewModel
     {

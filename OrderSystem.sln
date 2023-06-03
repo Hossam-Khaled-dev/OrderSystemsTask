@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Entity", "Order.Entit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.UI", "Order.UI\Order.UI.csproj", "{3FD8690E-68BA-48C2-B852-7FEAA4890E66}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Api", "Order.Api\Order.Api.csproj", "{89EF2C81-9716-4824-A0CF-14371401BE84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAcess", "DataAcess\DataAcess.csproj", "{1AAB82FF-89CF-4486-A3B8-AF9759D908EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3FD8690E-68BA-48C2-B852-7FEAA4890E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FD8690E-68BA-48C2-B852-7FEAA4890E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FD8690E-68BA-48C2-B852-7FEAA4890E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89EF2C81-9716-4824-A0CF-14371401BE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89EF2C81-9716-4824-A0CF-14371401BE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89EF2C81-9716-4824-A0CF-14371401BE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89EF2C81-9716-4824-A0CF-14371401BE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AAB82FF-89CF-4486-A3B8-AF9759D908EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AAB82FF-89CF-4486-A3B8-AF9759D908EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AAB82FF-89CF-4486-A3B8-AF9759D908EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AAB82FF-89CF-4486-A3B8-AF9759D908EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

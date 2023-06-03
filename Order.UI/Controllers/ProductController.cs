@@ -4,6 +4,9 @@ using Order.Entity.UnitOfWork;
 using Order.Entity.ViewModels;
 using Order.Entity.Entities;
 using Order.Entity.NewLayer.interfaces;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Order.UI.Controllers
 {
@@ -11,55 +14,81 @@ namespace Order.UI.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly HttpClient _httpClient;
 
-        public ProductController(IProductRepository productRepository , IUnitOfWork unitOfWork)
+
+
+        public ProductController(IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
-            
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;
+
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = new Uri("https://localhost:7260/"); 
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         // GET: /Product
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var products = _unitOfWork.Products.GetAll();
-            var productViewModels = products.Select(p => new ProductViewModel
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                // Set other properties as needed
-            });
 
-            return View(productViewModels);
+            try
+            {
+                var response = await _httpClient.GetAsync("/api/Product/GetAll"); 
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var ProductsJson = await response.Content.ReadAsStringAsync();
+                    var ProductViewModels = JsonConvert.DeserializeObject<List<ProductViewModel>>(ProductsJson);
+
+                    return View(ProductViewModels);
+                }
+
+                ViewBag.ErrorMessage = $"Error: {response.StatusCode}";
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                ViewBag.ErrorMessage = $"Error: {ex.Message}";
+            }
+
+            return View();
         }
+
+      
+        
 
         public IActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
-        public IActionResult Create(ProductViewModel model)
+        public async Task<IActionResult> Create(ProductViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var product = new Product
+                if (ModelState.IsValid)
                 {
-                    Name = model.Name,
-                    Price = model.Price,
-                    Amount=model.Amount
-                    
-                    // Set other properties as needed
-                };
 
-                _unitOfWork.Products.Add(product);
-                _unitOfWork.Commit();
+                    var response = await _httpClient.PostAsJsonAsync("/api/Product/Create", model); 
 
-                return RedirectToAction("Index");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        
+                        return RedirectToAction("Index");
+                    }
+
+                    ViewBag.ErrorMessage = $"Error: {response.StatusCode}";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                ViewBag.ErrorMessage = $"Error: {ex.Message}";
             }
 
-            return View(model);
+            return View("Create", model); 
         }
 
         public IActionResult Edit(int id)
@@ -76,49 +105,61 @@ namespace Order.UI.Controllers
                 Id = product.Id,
                 Name = product.Name,
                 Price = product.Price,
-                // Set other properties as needed
+               
             };
 
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Edit(ProductViewModel model)
+        [HttpPut]
+        public async Task<IActionResult> Edit(int id, ProductViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var product = _unitOfWork.Products.GetById(model.Id);
-
-                if (product == null)
+                if (ModelState.IsValid)
                 {
-                    return NotFound();
+                    
+
+                    var response = await _httpClient.PutAsJsonAsync($"/api/Product/Edit?id{id}", model); 
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Product update successful
+                        return RedirectToAction("Index");
+                    }
+
+                    // Handle unsuccessful response
+                    ViewBag.ErrorMessage = $"Error: {response.StatusCode}";
                 }
-
-                product.Name = model.Name;
-                product.Price = model.Price;
-                // Update other properties as needed
-
-                _unitOfWork.Commit();
-
-                return RedirectToAction("Index");
             }
-
-            return View(model);
-        }
-
-        public IActionResult Delete(int id)
-        {
-            var product = _unitOfWork.Products.GetById(id);
-
-            if (product == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                // Handle exception
+                ViewBag.ErrorMessage = $"Error: {ex.Message}";
             }
 
-            _unitOfWork.Products.Remove(product.Id);
-            _unitOfWork.Commit();
+            return View("Edit", model); 
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"/api/Product/Delete?id={id}");
 
-            return RedirectToAction("Index");
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                ViewBag.ErrorMessage = $"Error: {response.StatusCode}";
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                ViewBag.ErrorMessage = $"Error: {ex.Message}";
+            }
+
+            return RedirectToAction("Index"); 
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model RoleViewModel
+﻿@*@model RoleViewModel
 
 <h2>Create Role</h2>
 
@@ -6,10 +6,105 @@
 {
     <div class="form-group">
         <label>Role Name</label>
-@*        @Html.TextBoxFor(m => m.RoleName, new { @class = "form-control" })
-*@    </div>
+       @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+   </div>
     
     <input type="submit" value="Create" class="btn btn-primary" />
 }
 
 <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+*@
+
+@*@model RoleViewModel
+
+<h2>Create Role</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <label for="Name">Role Name</label>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    <div class="invalid-feedback">Please enter a role name.</div>
+                </div>
+
+              
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add form validation
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>*@
+
+
+            @model RoleViewModel
+
+<h2>Create Role</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <label for="Name">Role Name</label>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    <div class="invalid-feedback">Please enter a role name.</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Create</button>
+            </form>
+
+            <a href="@Url.Action("Index")" class="btn btn-secondary btn-block mt-3">Back to List</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Add animation */
+    .container {
+        animation: fadeIn 1s;
+    }
+    
+   
+</style>
+
+<script>
+    // Add form validation
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

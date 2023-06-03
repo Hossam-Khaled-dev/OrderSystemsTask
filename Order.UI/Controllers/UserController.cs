@@ -6,11 +6,10 @@ using Order.Entity.NewLayer.interfaces;
 using Order.Entity.Repositories;
 using Order.Entity.UnitOfWork;
 using Order.Entity.ViewModels;
-using Order.UI.ViewModels;
 using System.Data;
 
 namespace Order.Entity.NewLayer;
-[Authorize(Roles = "Admin")]
+//[Authorize(Roles = "Admin")]
 public class UserController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
